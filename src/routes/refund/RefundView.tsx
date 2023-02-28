@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from 'routes/refund/RefundView.module.css'
 import ToggleBtnContainer from "components/refund/toggle-btn/ToggleBtnContainer";
 import {ReactComponent as AlertLogo} from 'assets/images/refund/alert_logo.svg';
@@ -6,8 +6,17 @@ import BlueTypeBtn from "components/public/blue-type-btn/BlueTypeBtn";
 import TextInputBoxContainer from "components/public/text-input-box/TextInputBoxContainer";
 import {ReactComponent as CheckBoxDefault} from 'assets/images/refund/check_box_default.svg'
 import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_active.svg'
+import {RootState} from "reducers/reducers";
+import {useSelector} from 'react-redux';
 
 function RefundView(){
+    const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
+
+    const [isCheck, setIsCheck] = useState(false);
+
+    const checkBoxOnClickHandler = (event: React.MouseEvent) => {
+        setIsCheck(!isCheck);
+    }
 
     return(
         <div className={styles.refund_view_main}>
@@ -19,7 +28,7 @@ function RefundView(){
                     <span>임대 유형</span>
                     <ToggleBtnContainer />
                 </div>
-                <div className={styles.refund_view_body}>
+                {rentalTypeToggleClickSelector['activeMenu'] !== '' ? <div className={styles.refund_view_body}>
                     <div className={styles.refund_view_description_container}>
                         <span className={styles.description_title}>임대비용</span>
                         <div>
@@ -46,6 +55,7 @@ function RefundView(){
                         </div>
                         <div>
                             <TextInputBoxContainer
+                                isActiveBox={isCheck}
                                 componentRef={null}
                                 textBoxTitle='보증금'
                                 textBoxSubTitle='만원'
@@ -60,9 +70,9 @@ function RefundView(){
                                 inputValue=''
                             />
                         </div>
-                        <div className={styles.check_box_container}>
-                            <CheckBoxDefault />
-                            <span>관리비는 관리실에 따로 납부하거나 없습니다.</span>
+                        <div onClick={checkBoxOnClickHandler} className={styles.check_box_container}>
+                            {isCheck ? <CheckBoxActive /> : <CheckBoxDefault />}
+                            <span className={`${isCheck ? styles.active : ''}`}>관리비는 관리실에 따로 납부하거나 없습니다.</span>
                         </div>
                     </div>
                     <div className={styles.refund_view_btn_container}>
@@ -71,7 +81,7 @@ function RefundView(){
                     <div className={styles.refund_view_explain_container}>
                         <span>환급금만 확인해도 월세고지서가 무료로 제공됩니다.</span>
                     </div>
-                </div>
+                </div> : null}
             </div>
         </div>
     );

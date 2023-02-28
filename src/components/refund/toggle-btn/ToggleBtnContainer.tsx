@@ -1,15 +1,15 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import ToggleBtnPresenter from './ToggleBtnPresenter';
 
 function ToggleBtnContainer(){
-    const [isActive, setIsActive] = useState(false);
-    const monthlyRentRef = useRef(null);
-    const bigDepositRef = useRef(null);
+    const [activeToggle, setActiveToggle] = useState('');
     const rentalTypeToggleClickDispatch = useDispatch();
 
     const toggleBtnOnClickHandler = (event: React.MouseEvent) => {
         const activeTargetId = event.currentTarget.id;
+
+        setActiveToggle(activeTargetId);
 
         if(activeTargetId === 'monthlyRent'){
             rentalTypeToggleClickDispatch({type: 'rentalTypeToggleClick', menuName: 'monthlyRent'})
@@ -19,7 +19,7 @@ function ToggleBtnContainer(){
     }
 
     return(
-        <ToggleBtnPresenter onClickHandler={toggleBtnOnClickHandler} isActive={isActive} />
+        <ToggleBtnPresenter onClickHandler={toggleBtnOnClickHandler} activeToggle={activeToggle} />
     );
 }
 

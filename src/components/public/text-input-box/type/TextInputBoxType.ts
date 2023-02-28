@@ -1,6 +1,7 @@
 import {MutableRefObject} from "react";
 
 export type TextInputBoxPresenterPropsType = {
+    isActiveBox?: boolean | undefined,
     componentRef: null,
     textBoxTitle: string,
     textBoxSubTitle: string,
@@ -9,6 +10,7 @@ export type TextInputBoxPresenterPropsType = {
 }
 
 export type TextInputBoxContainerPropsType = {
+    isActiveBox?: boolean | undefined,
     componentRef: null,
     textBoxTitle: string,
     textBoxSubTitle: string,

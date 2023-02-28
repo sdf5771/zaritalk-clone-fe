@@ -94,13 +94,20 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 .check_box_container > span{
+    margin-top: 2px;
     font-family: 'Apple SD Gothic Neo';
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     color: #222222;
+    transition: color 0.2s ease;
+}
+.check_box_container > span.active{
+    color: #2C7FFF;
+    font-weight: 700;
 }
 .refund_view_explain_container{
     margin-top: 11px;
