@@ -8,7 +8,7 @@ function ToggleBtnPresenter(){
                 <span>월세</span>
             </div>
             <div>
-                <span>전세</span>
+                <span>전세 commit test</span>
             </div>
         </div>
     );
