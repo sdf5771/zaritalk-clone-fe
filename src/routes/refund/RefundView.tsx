@@ -9,11 +9,13 @@ import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_a
 import {RootState} from "reducers/reducers";
 import {useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 function RefundView(){
+    const [cookies, setCookie, removeCookie] = useCookies(['rentType']);
     const navigate = useNavigate();
     const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
-
+    console.log('cookies ', cookies.rentType);
     const [isCheck, setIsCheck] = useState(false);
 
     const checkBoxOnClickHandler = (event: React.MouseEvent) => {
@@ -21,6 +23,7 @@ function RefundView(){
     }
 
     const completeBtnOnClickHandler = (event: React.MouseEvent) => {
+        setCookie('rentType', rentalTypeToggleClickSelector['activeMenu'])
         navigate('/residence');
     }
     return(
@@ -33,7 +36,8 @@ function RefundView(){
                     <span>임대 유형</span>
                     <ToggleBtnContainer />
                 </div>
-                {rentalTypeToggleClickSelector['activeMenu'] !== '' ? <div className={styles.refund_view_body}>
+                {rentalTypeToggleClickSelector['activeMenu'] !== '' || cookies.rentType ?
+                    <div className={styles.refund_view_body}>
                     <div className={styles.refund_view_description_container}>
                         <span className={styles.description_title}>임대비용</span>
                         <div>
@@ -42,7 +46,7 @@ function RefundView(){
                         </div>
                     </div>
                     <div className={styles.refund_view_input_container}>
-                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" ?
+                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" || cookies.rentType === "monthlyRent" ?
                             <div>
                                 <TextInputBoxContainer
                                     componentRef={null}
