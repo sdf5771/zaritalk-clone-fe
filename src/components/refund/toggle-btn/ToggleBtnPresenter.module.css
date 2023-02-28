@@ -1,0 +1,31 @@
+.toggle_btn_main{
+    padding: 0 17px;
+    width: calc(100% - 34px);
+    display: flex;
+}
+.toggle_btn_main > div:first-child{
+    border-radius: 3px 0 0 3px;
+}
+.toggle_btn_main > div:last-child{
+    border-radius: 0 3px 3px 0;
+}
+.toggle_btn_main > div {
+    width: 50%;
+    height: 42px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    border: 1px solid #E8E8E8;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.toggle_btn_main > div > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    text-align: center;
+    color: #222222;
+}

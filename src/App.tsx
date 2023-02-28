@@ -1,10 +1,12 @@
 import React from 'react';
+import {Route, Routes} from 'react-router-dom';
+import RefundView from "./routes/refund/RefundView";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+      <Routes>
+        <Route path='/' element={<RefundView />} />
+      </Routes>
   );
 }
 
