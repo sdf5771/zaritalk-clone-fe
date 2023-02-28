@@ -2,8 +2,11 @@ import React from 'react';
 import styles from 'routes/refund/RefundView.module.css'
 import ToggleBtnContainer from "components/refund/toggle-btn/ToggleBtnContainer";
 import {ReactComponent as AlertLogo} from 'assets/images/refund/alert_logo.svg';
-import BlueTypeBtn from "../../components/public/blue-type-btn/BlueTypeBtn";
-import TextInputBoxContainer from "../../components/public/text-input-box/TextInputBoxContainer";
+import BlueTypeBtn from "components/public/blue-type-btn/BlueTypeBtn";
+import TextInputBoxContainer from "components/public/text-input-box/TextInputBoxContainer";
+import {ReactComponent as CheckBoxDefault} from 'assets/images/refund/check_box_default.svg'
+import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_active.svg'
+
 function RefundView(){
 
     return(
@@ -24,14 +27,43 @@ function RefundView(){
                             <div><AlertLogo /><span>비용 입력시 고지서가 무료로 제공됩니다.</span></div>
                         </div>
                     </div>
-                    <div>
-                        <TextInputBoxContainer
-                            componentRef={null}
-                            textBoxTitle='보증금'
-                            textBoxSubTitle='만원'
-                            inputPlaceholder='0'
-                            inputValue=''
-                        />
+                    <div className={styles.refund_view_input_container}>
+                        <div>
+                            <TextInputBoxContainer
+                                componentRef={null}
+                                textBoxTitle='보증금'
+                                textBoxSubTitle='만원'
+                                inputPlaceholder='0'
+                                inputValue=''
+                            />
+                            <TextInputBoxContainer
+                                componentRef={null}
+                                textBoxTitle='보증금'
+                                textBoxSubTitle='만원'
+                                inputPlaceholder='0'
+                                inputValue=''
+                            />
+                        </div>
+                        <div>
+                            <TextInputBoxContainer
+                                componentRef={null}
+                                textBoxTitle='보증금'
+                                textBoxSubTitle='만원'
+                                inputPlaceholder='0'
+                                inputValue=''
+                            />
+                            <TextInputBoxContainer
+                                componentRef={null}
+                                textBoxTitle='보증금'
+                                textBoxSubTitle='만원'
+                                inputPlaceholder='0'
+                                inputValue=''
+                            />
+                        </div>
+                        <div className={styles.check_box_container}>
+                            <CheckBoxDefault />
+                            <span>관리비는 관리실에 따로 납부하거나 없습니다.</span>
+                        </div>
                     </div>
                     <div className={styles.refund_view_btn_container}>
                         <BlueTypeBtn btnTitle='금액 확인하기 👆' onClickHandler={(event: React.MouseEvent) => {}}/>

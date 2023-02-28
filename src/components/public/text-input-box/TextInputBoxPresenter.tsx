@@ -6,8 +6,10 @@ function TextInputBoxPresenter({componentRef, textBoxTitle, textBoxSubTitle, inp
     return(
         <div ref={componentRef} className={styles.text_input_box_main}>
             <span className={styles.text_input_box_title}>{textBoxTitle}</span>
-            <input className={styles.text_input_box_input} placeholder={inputPlaceholder} value={inputValue}/>
-            <span className={styles.text_input_box_subtitle}>{textBoxSubTitle}</span>
+            <div className={styles.text_input_container}>
+                <input className={styles.text_input_box_input} placeholder={inputPlaceholder} value={inputValue}/>
+                <span className={styles.text_input_box_subtitle}>{textBoxSubTitle}</span>
+            </div>
         </div>
     )
 }

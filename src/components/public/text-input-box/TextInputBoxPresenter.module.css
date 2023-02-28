@@ -1,5 +1,6 @@
 .text_input_box_main{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 46px;
@@ -8,14 +9,21 @@
     border-radius: 4px;
 }
 .text_input_box_title{
+    margin-left: 10px;
     font-family: 'Apple SD Gothic Neo';
     font-weight: 500;
     font-size: 14px;
     color: #B4B4B4;
 }
+.text_input_container{
+    margin-right: 8px;
+    display: flex;
+}
 .text_input_box_input{
     border: 0;
     outline: 0;
+    max-width: 40px;
+    text-align: right;
     font-family: 'Apple SD Gothic Neo';
     font-weight: 500;
     font-size: 14px;

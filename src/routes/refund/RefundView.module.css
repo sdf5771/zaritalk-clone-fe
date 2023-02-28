@@ -76,8 +76,32 @@
     line-height: 16px;
     color: #7A7A7A;
 }
-
-
+.refund_view_input_container{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+}
+.refund_view_input_container > div {
+    display: flex;
+    padding: 0 18px;
+    width: calc(100% - 36px);
+}
+.refund_view_input_container > div:nth-child(2){
+    margin-top: 8px;
+}
+.check_box_container{
+    margin-top: 17px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.check_box_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #222222;
+}
 .refund_view_explain_container{
     margin-top: 11px;
     display: flex;
@@ -87,6 +111,8 @@
 .refund_view_btn_container{
     margin-top: 32px;
     display: flex;
+    padding: 0 16px;
+    width: calc(100% - 32px);
 }
 .refund_view_explain_container > span{
     font-family: 'Apple SD Gothic Neo';
