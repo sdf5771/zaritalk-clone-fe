@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ToggleBtnPresenter from './ToggleBtnPresenter';
 
 function ToggleBtnContainer(){
+    const [isActive, setIsActive] = useState(false);
+
+    const toggleBtnOnClickHandler = (event: React.MouseEvent) => {
+        console.log(event);
+    }
+
     return(
-        <ToggleBtnPresenter />
+        <ToggleBtnPresenter onClickHandler={toggleBtnOnClickHandler} isActive={isActive} />
     );
 }
 

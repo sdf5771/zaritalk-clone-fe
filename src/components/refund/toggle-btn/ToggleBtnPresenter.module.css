@@ -28,4 +28,13 @@
     line-height: 100%;
     text-align: center;
     color: #222222;
+    transition: color 0.2s ease;
+}
+.toggle_btn_main > div.active {
+    background-color: #2C7FFF;
+    border: 0;
+    height: 44px;
+}
+.toggle_btn_main > div.active > span {
+    color: #FFFFFF;
 }

@@ -38,3 +38,60 @@
     line-height: 100%;
     color: #222222;
 }
+.refund_view_body{
+    display: flex;
+    flex-direction: column;
+}
+.refund_view_description_container{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 18px;
+    width: calc(100% - 36px);
+}
+.description_title{
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #222222;
+}
+.refund_view_description_container > div{
+    margin-top: 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.refund_view_description_container > div > div{
+    display: flex;
+    gap: 5px;
+}
+.refund_view_description_container > div > div > span{
+    margin-top: 2px;
+    font-family: 'Apple SD Gothic Neo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #7A7A7A;
+}
+
+
+.refund_view_explain_container{
+    margin-top: 11px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.refund_view_btn_container{
+    margin-top: 32px;
+    display: flex;
+}
+.refund_view_explain_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #7A7A7A;
+}
