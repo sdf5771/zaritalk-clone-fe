@@ -1,4 +1,4 @@
-import React, {ReactEventHandler} from 'react';
+import React, {ReactEventHandler, RefObject} from 'react';
 import styles from './ToggleBtnPresenter.module.css';
 
 type ToggleBtnPresenterPropsType = {
@@ -6,13 +6,13 @@ type ToggleBtnPresenterPropsType = {
     isActive: boolean,
 }
 
-function ToggleBtnPresenter({onClickHandler, isActive}:ToggleBtnPresenterPropsType){
+function ToggleBtnPresenter({ onClickHandler, isActive}:ToggleBtnPresenterPropsType){
     return(
         <div className={styles.toggle_btn_main}>
-            <div onClick={onClickHandler} className={styles.active}>
+            <div id="monthlyRent" onClick={onClickHandler} className={styles.active}>
                 <span>월세</span>
             </div>
-            <div onClick={onClickHandler}>
+            <div id="bigDeposit" onClick={onClickHandler}>
                 <span>전세</span>
             </div>
         </div>
