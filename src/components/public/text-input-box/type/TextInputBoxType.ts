@@ -8,6 +8,8 @@ export type TextInputBoxPresenterPropsType = {
     inputPlaceholder: string,
     inputValue: string,
     inputOnChangeHandler: ReactEventHandler
+    isArrowIcon?: boolean,
+    inputType?: string,
 }
 
 export type TextInputBoxContainerPropsType = {
@@ -16,4 +18,6 @@ export type TextInputBoxContainerPropsType = {
     textBoxTitle: string,
     textBoxSubTitle: string,
     inputPlaceholder: string,
+    isArrowIcon?: boolean,
+    inputType? :string,
 }

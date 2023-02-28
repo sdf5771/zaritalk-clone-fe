@@ -1,14 +1,26 @@
 import React, {RefObject} from 'react';
 import {TextInputBoxPresenterPropsType} from './type/TextInputBoxType'
 import styles from './TextInputBoxPresenter.module.css';
+import {ReactComponent as ArrowRightIcon} from 'assets/images/public/arrow_right.svg'
 
-function TextInputBoxPresenter({componentRef, textBoxTitle, textBoxSubTitle, inputPlaceholder, inputOnChangeHandler, inputValue, isActiveBox}: TextInputBoxPresenterPropsType){
+function TextInputBoxPresenter({componentRef, textBoxTitle, textBoxSubTitle, inputPlaceholder, inputOnChangeHandler, inputType, inputValue, isActiveBox, isArrowIcon}: TextInputBoxPresenterPropsType){
     return(
         <div ref={componentRef} className={`${styles.text_input_box_main} ${isActiveBox ? styles.readonly : ''}`}>
             <span className={styles.text_input_box_title}>{textBoxTitle}</span>
             <div className={styles.text_input_container}>
-                <input onChange={inputOnChangeHandler} className={styles.text_input_box_input} placeholder={inputPlaceholder} value={isActiveBox ? '' : inputValue} readOnly={isActiveBox ? true : false}/>
+                <input
+                    type={inputType ? inputType : 'text'}
+                    onChange={inputOnChangeHandler}
+                    className={styles.text_input_box_input}
+                    placeholder={inputPlaceholder}
+                    value={isActiveBox ? '' : inputValue}
+                    disabled={isActiveBox ? true : false}
+                    min={inputType === 'number' ? '1' : ''}
+                    max={inputType === 'number' ? '31' : ''}
+                    step={inputType === 'number' ? '1' : ''}
+                />
                 <span className={`${styles.text_input_box_subtitle} ${isActiveBox ? styles.readonly : ''}`}>{textBoxSubTitle}</span>
+                {isArrowIcon ? <ArrowRightIcon className={styles.arrow_right}/> : null}
             </div>
         </div>
     )

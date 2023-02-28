@@ -1,0 +1,57 @@
+.refund_estimation_display_root{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 184px;
+    background-color: #ffffff;
+}
+.refund_info_container{
+    margin-top: 32px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.refund_info_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #222222;
+}
+.refund_info_container > span > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #2C7FFF;
+}
+.refund_explain_container{
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.refund_explain_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: #B4B4B4;
+}
+.refund_modify_info_container{
+    margin-top: 16px;
+    display: flex;
+    justify-content:center;
+}
+.refund_modify_info_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    color: #7A7A7A;
+}

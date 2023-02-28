@@ -8,8 +8,10 @@ import {ReactComponent as CheckBoxDefault} from 'assets/images/refund/check_box_
 import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_active.svg'
 import {RootState} from "reducers/reducers";
 import {useSelector} from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 function RefundView(){
+    const navigate = useNavigate();
     const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
 
     const [isCheck, setIsCheck] = useState(false);
@@ -17,7 +19,10 @@ function RefundView(){
     const checkBoxOnClickHandler = (event: React.MouseEvent) => {
         setIsCheck(!isCheck);
     }
-    console.log(rentalTypeToggleClickSelector);
+
+    const completeBtnOnClickHandler = (event: React.MouseEvent) => {
+        navigate('/residence');
+    }
     return(
         <div className={styles.refund_view_main}>
             <div className={styles.refund_view_body}>
@@ -65,15 +70,17 @@ function RefundView(){
                             <TextInputBoxContainer
                                 isActiveBox={isCheck}
                                 componentRef={null}
-                                textBoxTitle='보증금'
+                                textBoxTitle='월 관리비'
                                 textBoxSubTitle='만원'
                                 inputPlaceholder='0'
                             />
                             <TextInputBoxContainer
                                 componentRef={null}
-                                textBoxTitle='보증금'
-                                textBoxSubTitle='만원'
-                                inputPlaceholder='0'
+                                inputType="number"
+                                textBoxTitle='임대료 납부일'
+                                textBoxSubTitle='일'
+                                inputPlaceholder=''
+                                isArrowIcon={true}
                             />
                         </div>
                         <div onClick={checkBoxOnClickHandler} className={styles.check_box_container}>
@@ -82,7 +89,7 @@ function RefundView(){
                         </div>
                     </div>
                     <div className={styles.refund_view_btn_container}>
-                        <BlueTypeBtn btnTitle='금액 확인하기 👆' onClickHandler={(event: React.MouseEvent) => {}}/>
+                        <BlueTypeBtn btnTitle='금액 확인하기 👆' onClickHandler={completeBtnOnClickHandler}/>
                     </div>
                     <div className={styles.refund_view_explain_container}>
                         <span>환급금만 확인해도 월세고지서가 무료로 제공됩니다.</span>

@@ -1,0 +1,28 @@
+.address_input_root{
+    display: flex;
+    padding: 0 12px;
+    width: 304px;
+    height: 46px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    justify-content: space-between;
+    align-items: center;
+}
+.address_input_root > input{
+    width: calc(100% - 26px);
+    outline: 0;
+    border: 0;
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #222222;
+}
+.address_input_root > input::placeholder{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #B4B4B4;
+
+}

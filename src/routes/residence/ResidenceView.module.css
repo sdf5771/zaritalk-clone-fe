@@ -1,0 +1,50 @@
+.residence_view_root{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+.residence_view_main{
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+}
+.residence_view_header{
+    width: 100%;
+}
+.residence_view_body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.address_container{
+    margin-top: 25px;
+    padding: 0 18px;
+    width: calc(100% - 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.address_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #222222;
+}
+.address_explain_container{
+    display: flex;
+    gap: 5px;
+}
+.alert_logo{
+    min-width:14px;
+    min-height:14px;
+}
+.address_explain_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #7A7A7A;
+}

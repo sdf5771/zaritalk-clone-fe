@@ -20,14 +20,14 @@
     color: #B4B4B4;
 }
 .text_input_container{
-    width: calc(100% - 80px);
     margin-right: 8px;
     display: flex;
+    align-items: center;
 }
 .text_input_box_input{
     border: 0;
     outline: 0;
-    max-width: 40px;
+    max-width: 50px;
     text-align: right;
     font-family: 'Apple SD Gothic Neo';
     font-weight: 500;
@@ -51,4 +51,7 @@
 }
 .text_input_box_subtitle.readonly{
     color: #B4B4B4;
+}
+.arrow_right{
+    margin-left: 4px;
 }
