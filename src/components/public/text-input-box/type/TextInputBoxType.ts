@@ -1,4 +1,4 @@
-import {MutableRefObject} from "react";
+import {MutableRefObject, ReactEventHandler} from "react";
 
 export type TextInputBoxPresenterPropsType = {
     isActiveBox?: boolean | undefined,
@@ -7,6 +7,7 @@ export type TextInputBoxPresenterPropsType = {
     textBoxSubTitle: string,
     inputPlaceholder: string,
     inputValue: string,
+    inputOnChangeHandler: ReactEventHandler
 }
 
 export type TextInputBoxContainerPropsType = {
@@ -15,5 +16,4 @@ export type TextInputBoxContainerPropsType = {
     textBoxTitle: string,
     textBoxSubTitle: string,
     inputPlaceholder: string,
-    inputValue: string,
 }

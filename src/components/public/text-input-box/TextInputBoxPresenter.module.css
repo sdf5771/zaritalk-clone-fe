@@ -20,6 +20,7 @@
     color: #B4B4B4;
 }
 .text_input_container{
+    width: calc(100% - 80px);
     margin-right: 8px;
     display: flex;
 }

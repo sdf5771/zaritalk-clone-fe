@@ -17,7 +17,7 @@ function RefundView(){
     const checkBoxOnClickHandler = (event: React.MouseEvent) => {
         setIsCheck(!isCheck);
     }
-
+    console.log(rentalTypeToggleClickSelector);
     return(
         <div className={styles.refund_view_main}>
             <div className={styles.refund_view_body}>
@@ -37,22 +37,30 @@ function RefundView(){
                         </div>
                     </div>
                     <div className={styles.refund_view_input_container}>
-                        <div>
-                            <TextInputBoxContainer
-                                componentRef={null}
-                                textBoxTitle='보증금'
-                                textBoxSubTitle='만원'
-                                inputPlaceholder='0'
-                                inputValue=''
-                            />
-                            <TextInputBoxContainer
-                                componentRef={null}
-                                textBoxTitle='보증금'
-                                textBoxSubTitle='만원'
-                                inputPlaceholder='0'
-                                inputValue=''
-                            />
-                        </div>
+                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" ?
+                            <div>
+                                <TextInputBoxContainer
+                                    componentRef={null}
+                                    textBoxTitle='보증금'
+                                    textBoxSubTitle='만원'
+                                    inputPlaceholder='0'
+                                />
+                                <TextInputBoxContainer
+                                    componentRef={null}
+                                    textBoxTitle='월 임대료'
+                                    textBoxSubTitle='만원'
+                                    inputPlaceholder='0'
+                                />
+                            </div> :
+                            <div>
+                                <TextInputBoxContainer
+                                    componentRef={null}
+                                    textBoxTitle='보증금'
+                                    textBoxSubTitle='만원'
+                                    inputPlaceholder='0'
+                                />
+                            </div>
+                        }
                         <div>
                             <TextInputBoxContainer
                                 isActiveBox={isCheck}
@@ -60,14 +68,12 @@ function RefundView(){
                                 textBoxTitle='보증금'
                                 textBoxSubTitle='만원'
                                 inputPlaceholder='0'
-                                inputValue=''
                             />
                             <TextInputBoxContainer
                                 componentRef={null}
                                 textBoxTitle='보증금'
                                 textBoxSubTitle='만원'
                                 inputPlaceholder='0'
-                                inputValue=''
                             />
                         </div>
                         <div onClick={checkBoxOnClickHandler} className={styles.check_box_container}>
