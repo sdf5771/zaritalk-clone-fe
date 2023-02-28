@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './RefundEstimationDisplayPresenter.module.css';
+import {RefundEstimationDisplayPresenterPropsType} from './type/RefundEstimationDisplayType'
 
-function RefundEstimationDisplayPresenter(){
+function RefundEstimationDisplayPresenter({modifyOnClickHandler}: RefundEstimationDisplayPresenterPropsType){
     return(
         <div className={styles.refund_estimation_display_root}>
             <div className={styles.refund_info_container}>
@@ -12,7 +13,7 @@ function RefundEstimationDisplayPresenter(){
                 <span>해당 금액은 확정된 것이 아니며 새액공제 자격조건,</span>
                 <span>세금납부 및 공제이력에 따라 변동될 수 있습니다.</span>
             </div>
-            <div className={styles.refund_modify_info_container}>
+            <div onClick={modifyOnClickHandler} className={styles.refund_modify_info_container}>
                 <span>임대비용 수정하기</span>
             </div>
         </div>

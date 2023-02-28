@@ -23,8 +23,22 @@ function AddressInputContainer(){
         setAddress(fullAddress);
     };
 
+    const handleClose = (data: string) => {
+        console.log(data)
+        if(data && data === 'COMPLETE_CLOSE'){
+
+        }
+    }
+
     const onClickHandler = async (event: React.MouseEvent) => {
-        await daumPostCode({ onComplete: handleComplete })
+        await daumPostCode(
+            {
+                onComplete: handleComplete,
+                onClose: handleClose,
+                popupKey: 'daumPost',
+
+            }
+        )
     }
 
     return(
