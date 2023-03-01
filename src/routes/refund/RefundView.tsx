@@ -46,10 +46,7 @@ function RefundView(){
             monthlyCost: monthlyCostInputRefValue.length !== 0,
             paymentDeadline: paymentDeadlineInputRefValue.length !== 0,
         };
-        console.log('maintenanceCostInputRefValue ',maintenanceCostInputRefValue.length)
-        console.log(maintenanceCostInputRefValue.length !== 0)
-        console.log(maintenanceCostInputRefValue.length === 0)
-        console.log(checkObj)
+
         return Object.values(checkObj).every((value) => value);
     }
 

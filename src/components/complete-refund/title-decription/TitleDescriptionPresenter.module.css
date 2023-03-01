@@ -1,0 +1,27 @@
+.title_description_root{
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.title{
+    min-width: 49px;
+    min-height: 23px;
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 164%;
+    color: #B4B4B4;
+}
+.description{
+    width: calc(100% - 49px);
+    height: 23px;
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 164%;
+    color: #222222;
+}
+.description.bold{
+    font-weight: 700;
+}

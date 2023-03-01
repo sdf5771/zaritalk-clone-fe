@@ -1,0 +1,19 @@
+.icon_text_button_root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 47px;
+    background: #FFFFFF;
+    border: 1px solid #C8C8C8;
+    border-radius: 8px;
+    gap: 4px;
+    cursor: pointer;
+}
+.icon_text_button_root > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 164%;
+    color: #7A7A7A;
+}

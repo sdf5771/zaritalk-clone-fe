@@ -1,0 +1,15 @@
+.complete_refund_view_root{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+.complete_refund_view_main{
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+}
+.result_view_container{
+    margin-top: 20px;
+}
