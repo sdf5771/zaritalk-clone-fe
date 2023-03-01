@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styles from 'routes/refund/RefundView.module.css'
 import ToggleBtnContainer from "components/refund/toggle-btn/ToggleBtnContainer";
 import {ReactComponent as AlertLogo} from 'assets/images/refund/alert_logo.svg';
@@ -20,7 +20,20 @@ function RefundView(){
     const paymentDeadlineInputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
+    const [activeMenu, setActiveMenu] = useState(null);
     const [isCheck, setIsCheck] = useState(false);
+    useEffect(() => {
+        if(location.state['rentType']){
+            setActiveMenu(location.state['rentType']);
+            setIsCheck(location.state['usingMaintenanceValue'])
+        }
+    },[])
+
+    useEffect(() => {
+        if(rentalTypeToggleClickSelector['activeMenu'] !== ''){
+            setActiveMenu(rentalTypeToggleClickSelector['activeMenu']);
+        }
+    },[rentalTypeToggleClickSelector['activeMenu']])
 
     const checkBoxOnClickHandler = (event: React.MouseEvent) => {
         setIsCheck(!isCheck);
@@ -28,12 +41,15 @@ function RefundView(){
 
     const checkInputValues = (depositInputRefValue: string, maintenanceCostInputRefValue: string, monthlyCostInputRefValue: string, paymentDeadlineInputRefValue: string, usingMaintenanceValue:boolean) => {
         const checkObj = {
-            maintenanceCost: !usingMaintenanceValue,
+            maintenanceCost: usingMaintenanceValue ? maintenanceCostInputRefValue.length === 0 : maintenanceCostInputRefValue.length !== 0,
             deposit: depositInputRefValue.length !== 0,
             monthlyCost: monthlyCostInputRefValue.length !== 0,
             paymentDeadline: paymentDeadlineInputRefValue.length !== 0,
         };
-
+        console.log('maintenanceCostInputRefValue ',maintenanceCostInputRefValue.length)
+        console.log(maintenanceCostInputRefValue.length !== 0)
+        console.log(maintenanceCostInputRefValue.length === 0)
+        console.log(checkObj)
         return Object.values(checkObj).every((value) => value);
     }
 
@@ -79,7 +95,7 @@ function RefundView(){
                     <span>임대 유형</span>
                     <ToggleBtnContainer />
                 </div>
-                {rentalTypeToggleClickSelector['activeMenu'] !== '' || location.state['rentType'] ?
+                {activeMenu ?
                     <div className={styles.refund_view_body}>
                     <div className={styles.refund_view_description_container}>
                         <span className={styles.description_title}>임대비용</span>
@@ -89,7 +105,7 @@ function RefundView(){
                         </div>
                     </div>
                     <div className={styles.refund_view_input_container}>
-                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" || location.state['rentType'] === 'monthlyRent' ?
+                        {activeMenu === 'monthlyRent' ?
                             <div>
                                 <TextInputBoxContainer
                                     componentRef={depositInputRef}
@@ -136,7 +152,7 @@ function RefundView(){
                             />
                         </div>
                         <div onClick={checkBoxOnClickHandler} className={styles.check_box_container}>
-                            {isCheck || location.state['usingMaintenanceValue'] ? <CheckBoxActive /> : <CheckBoxDefault />}
+                            {isCheck ? <CheckBoxActive /> : <CheckBoxDefault />}
                             <span className={`${isCheck ? styles.active : ''}`}>관리비는 관리실에 따로 납부하거나 없습니다.</span>
                         </div>
                     </div>

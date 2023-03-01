@@ -27,7 +27,7 @@ const calculateRentRefund = (params: RentCalculationParams): RentCalculationResu
         if (rentType === 'bigDeposit'){
             refundAmount += 0; // 전세는 환급금 x
         } else if(rentType === "monthlyRent"){
-            const monthlyRent = parseInt(monthlyCost.replace(",", "")) - (usingMaintenanceValue ? parseInt(maintenanceCost.replace(",","")) : 0);
+            const monthlyRent = parseInt(monthlyCost.replace(",", ""));
             const yearRefundAmount = monthlyRent * refundAmountPerYear * parseInt(paymentDeadline);
             refundAmount += Math.min(maxRefundAmountPerYear, yearRefundAmount);
         }
