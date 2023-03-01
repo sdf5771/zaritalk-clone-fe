@@ -13,6 +13,8 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../reducers/reducers";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import refValueReturn from "modules/refValueReturn";
+import PublicToastMessageContainer from "components/public/public-toast-message/PublicToastMessageContainer";
 
 const SDatePicker = styled(DatePicker)`
     padding: 0 12px;
@@ -32,6 +34,7 @@ function ResidenceView(){
     const usernameRef = useRef<HTMLInputElement>(null);
     const detailAddressRef = useRef<HTMLInputElement>(null);
     const phoneNumberRef = useRef<HTMLInputElement>(null);
+    const [visibleToastMsg, setVisibleToastMsg] = useState(false);
     const [visibleDatepickContainer, setVisibleDatepickContainer] = useState(false);
     const [visibleConfirmContainer, setVisibleConfirmContainer] = useState(false);
     const [startDate, setStartDate] = useState<Date | string>('');
@@ -48,21 +51,43 @@ function ResidenceView(){
         }
     }, [addressSelector['addressValue'], startDate, endDate])
 
+    const checkInputValues = (startDate: Date | string, endDate: Date | string, address: string, detailAddress: string, phoneNumber:string) => {
+        let replacePhoneNumberVal = phoneNumber.replaceAll("-", "");
+
+        const checkObj = {
+            startDate: startDate ? true : false,
+            endDate: endDate ? true : false,
+            address: address.length !== 0,
+            detailAddress: detailAddress.length !== 0,
+            phoneNumber: replacePhoneNumberVal.length >= 10 && replacePhoneNumberVal.length <= 11,
+        };
+
+        return Object.values(checkObj).every((value) => value);
+    }
+
     const completeOnClickHandler = (event: React.MouseEvent) => {
-        navigate('/refund_complete',
-            { state: {
-                deposit: location.state.deposit ? location.state.deposit : '',
-                monthlyCost: location.state.monthlyCost ? location.state.monthlyCost : '',
-                rentType: location.state.rentType ? location.state.rentType : '',
-                paymentDeadline: location.state.paymentDeadline ? location.state.paymentDeadline : '',
-                maintenanceCost: location.state.maintenanceCost ? location.state.maintenanceCost : '',
-                usingMaintenanceValue: location.state.usingMaintenanceValue,
-                startDate: startDate,
-                endDate: endDate,
-                address: addressSelector['addressValue'],
-                detailAddress: detailAddressRef.current ? detailAddressRef.current.value : '',
-                phoneNumber: phoneNumberRef.current ? phoneNumberRef.current.value : '',
-            } })
+        let detailAddressRefValue = refValueReturn(detailAddressRef);
+        let phoneNumberRefValue = refValueReturn(phoneNumberRef);
+        let isValid = checkInputValues(startDate, endDate, addressSelector['addressValue'], detailAddressRefValue, phoneNumberRefValue)
+
+        if(isValid){
+            navigate('/refund_complete',
+                { state: {
+                        deposit: location.state.deposit ? location.state.deposit : '',
+                        monthlyCost: location.state.monthlyCost ? location.state.monthlyCost : '',
+                        rentType: location.state.rentType ? location.state.rentType : '',
+                        paymentDeadline: location.state.paymentDeadline ? location.state.paymentDeadline : '',
+                        maintenanceCost: location.state.maintenanceCost ? location.state.maintenanceCost : '',
+                        usingMaintenanceValue: location.state.usingMaintenanceValue,
+                        startDate: startDate,
+                        endDate: endDate,
+                        address: addressSelector['addressValue'],
+                        detailAddress: detailAddressRef.current ? detailAddressRef.current.value : '',
+                        phoneNumber: phoneNumberRef.current ? phoneNumberRef.current.value : '',
+                    } })
+        } else {
+            setVisibleToastMsg(true);
+        }
     }
 
     return(
@@ -142,6 +167,13 @@ function ResidenceView(){
                     }
                 </div>
             </div>
+            {visibleToastMsg &&
+                <PublicToastMessageContainer
+                    message='모든 정보를 정확하게 입력해주세요.'
+                    removeTimeout={1500}
+                    visible={visibleToastMsg}
+                    setVisible={setVisibleToastMsg}
+                />}
         </div>
     )
 }

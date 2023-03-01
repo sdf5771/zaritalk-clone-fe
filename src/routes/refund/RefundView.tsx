@@ -11,7 +11,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate, useLocation } from "react-router-dom";
 import PublicToastMessageContainer from "../../components/public/public-toast-message/PublicToastMessageContainer";
 import AlertDescriptionContainer from "components/public/alert_description/AlertDescriptionContainer";
-
+import refValueReturn from 'modules/refValueReturn';
 function RefundView(){
     const location = useLocation();
     const [visibleToastMsg, setVisibleToastMsg] = useState(false);
@@ -51,14 +51,6 @@ function RefundView(){
         };
 
         return Object.values(checkObj).every((value) => value);
-    }
-
-    const refValueReturn = (refData: React.RefObject<HTMLInputElement>) => {
-        if(refData && refData.current) {
-            return refData.current.value
-        } else {
-            return ''
-        }
     }
 
     const completeBtnOnClickHandler = (event: React.MouseEvent) => {

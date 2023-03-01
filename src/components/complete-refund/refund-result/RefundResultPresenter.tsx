@@ -11,7 +11,7 @@ function RefundResultPresenter({state, rentType, startDate, endDate, totalAmount
         <div className={styles.refund_result_root}>
             <div className={styles.refund_result_header}>
                 <HouseIcon />
-                <span>{state.address + state.detailAddress}</span>
+                <span>{state.address + ', ' + state.detailAddress}</span>
             </div>
             <div className={styles.refund_result_body}>
                 <div className={styles.refund_content_container}>
