@@ -8,10 +8,11 @@ import {ReactComponent as CheckBoxDefault} from 'assets/images/refund/check_box_
 import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_active.svg'
 import {RootState} from "reducers/reducers";
 import {useSelector} from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PublicToastMessageContainer from "../../components/public/public-toast-message/PublicToastMessageContainer";
 
 function RefundView(){
+    const location = useLocation();
     const [visibleToastMsg, setVisibleToastMsg] = useState(false);
     const depositInputRef = useRef<HTMLInputElement>(null);
     const maintenanceCostInputRef = useRef<HTMLInputElement>(null);
@@ -19,7 +20,6 @@ function RefundView(){
     const paymentDeadlineInputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
-
     const [isCheck, setIsCheck] = useState(false);
 
     const checkBoxOnClickHandler = (event: React.MouseEvent) => {
@@ -79,7 +79,7 @@ function RefundView(){
                     <span>임대 유형</span>
                     <ToggleBtnContainer />
                 </div>
-                {rentalTypeToggleClickSelector['activeMenu'] !== '' ?
+                {rentalTypeToggleClickSelector['activeMenu'] !== '' || location.state['rentType'] ?
                     <div className={styles.refund_view_body}>
                     <div className={styles.refund_view_description_container}>
                         <span className={styles.description_title}>임대비용</span>
@@ -89,19 +89,21 @@ function RefundView(){
                         </div>
                     </div>
                     <div className={styles.refund_view_input_container}>
-                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" ?
+                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" || location.state['rentType'] === 'monthlyRent' ?
                             <div>
                                 <TextInputBoxContainer
                                     componentRef={depositInputRef}
                                     textBoxTitle='보증금'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
+                                    initialValue={location.state['deposit'] ? location.state['deposit'] : ''}
                                 />
                                 <TextInputBoxContainer
                                     componentRef={monthlyCostInputRef}
                                     textBoxTitle='월 임대료'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
+                                    initialValue={location.state['monthlyCost'] ? location.state['monthlyCost'] : ''}
                                 />
                             </div> :
                             <div>
@@ -110,6 +112,7 @@ function RefundView(){
                                     textBoxTitle='보증금'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
+                                    initialValue={location.state['deposit'] ? location.state['deposit'] : ''}
                                 />
                             </div>
                         }
@@ -120,6 +123,7 @@ function RefundView(){
                                 textBoxTitle='월 관리비'
                                 textBoxSubTitle='만원'
                                 inputPlaceholder='0'
+                                initialValue={location.state['maintenanceCost'] ? location.state['maintenanceCost'] : ''}
                             />
                             <TextInputBoxContainer
                                 componentRef={paymentDeadlineInputRef}
@@ -128,10 +132,11 @@ function RefundView(){
                                 textBoxSubTitle='일'
                                 inputPlaceholder=''
                                 isArrowIcon={true}
+                                initialValue={location.state['paymentDeadline'] ? location.state['paymentDeadline'] : ''}
                             />
                         </div>
                         <div onClick={checkBoxOnClickHandler} className={styles.check_box_container}>
-                            {isCheck ? <CheckBoxActive /> : <CheckBoxDefault />}
+                            {isCheck || location.state['usingMaintenanceValue'] ? <CheckBoxActive /> : <CheckBoxDefault />}
                             <span className={`${isCheck ? styles.active : ''}`}>관리비는 관리실에 따로 납부하거나 없습니다.</span>
                         </div>
                     </div>

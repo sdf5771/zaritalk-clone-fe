@@ -1,8 +1,18 @@
 import {ReactEventHandler} from "react";
 
-export type RefundEstimationDisplayContainerPropsType = {
+export interface LocationState {
+    deposit: string;
+    monthlyCost: string;
+    rentType: string;
+    paymentDeadline: string;
+    maintenanceCost: string;
+    usingMaintenanceValue: boolean;
+}
 
+export type RefundEstimationDisplayContainerPropsType = {
+    state: LocationState;
 }
 export type RefundEstimationDisplayPresenterPropsType = {
-    modifyOnClickHandler: ReactEventHandler
+    modifyOnClickHandler: ReactEventHandler,
+    refundAmount: number,
 }

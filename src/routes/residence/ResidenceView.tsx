@@ -1,16 +1,21 @@
 import React from 'react';
 import styles from './ResidenceView.module.css'
+import {useLocation} from "react-router-dom";
 import RefundEstimationDisplayContainer
     from "components/residence/refund-esmimation-display/RefundEstimationDisplayContainer";
 import AddressInputContainer from "../../components/residence/addressInput/AddressInputContainer";
 import {ReactComponent as AlertLogo} from 'assets/images/refund/alert_logo.svg';
 
 function ResidenceView(){
+    const location = useLocation();
+
+    console.log('location ', location);
+
     return(
         <div className={styles.residence_view_root}>
             <div className={styles.residence_view_main}>
                 <div className={styles.residence_view_header}>
-                    <RefundEstimationDisplayContainer />
+                    <RefundEstimationDisplayContainer state={location.state} />
                 </div>
                 <div className={styles.residence_view_body}>
                     <div className={styles.address_container}>

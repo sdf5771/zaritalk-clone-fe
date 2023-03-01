@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './RefundEstimationDisplayPresenter.module.css';
 import {RefundEstimationDisplayPresenterPropsType} from './type/RefundEstimationDisplayType'
 
-function RefundEstimationDisplayPresenter({modifyOnClickHandler}: RefundEstimationDisplayPresenterPropsType){
+function RefundEstimationDisplayPresenter({modifyOnClickHandler, refundAmount}: RefundEstimationDisplayPresenterPropsType){
     return(
         <div className={styles.refund_estimation_display_root}>
             <div className={styles.refund_info_container}>
-                <span>내 월세 환급금은 <span>최대 360만원</span>입니다.</span>
+                <span>내 월세 환급금은 <span>최대 {refundAmount}만원</span>입니다.</span>
                 <span>자리톡으로 환급 신청하세요 👇🏻</span>
             </div>
             <div className={styles.refund_explain_container}>
