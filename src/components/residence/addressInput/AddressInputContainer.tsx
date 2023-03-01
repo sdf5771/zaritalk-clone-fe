@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import AddressInputPresenter from './AddressInputPresenter';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import {Address} from "react-daum-postcode/lib/loadPostcode";
+import {useDispatch} from "react-redux";
 
 function AddressInputContainer(){
+    const addressDispatch = useDispatch();
     const daumPostCode = useDaumPostcodePopup();
     const [address, setAddress] = useState('');
 
@@ -21,22 +23,14 @@ function AddressInputContainer(){
             fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
         }
         setAddress(fullAddress);
+        addressDispatch({type: 'USER_COMPLETE_ADDRESS_INPUT', addressValue: fullAddress})
     };
-
-    const handleClose = (data: string) => {
-        console.log(data)
-        if(data && data === 'COMPLETE_CLOSE'){
-
-        }
-    }
 
     const onClickHandler = async (event: React.MouseEvent) => {
         await daumPostCode(
             {
                 onComplete: handleComplete,
-                onClose: handleClose,
                 popupKey: 'daumPost',
-
             }
         )
     }

@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     background-color: #f8f8f8;
+    overflow: auto;
 }
 .residence_view_main{
     display: flex;
@@ -32,4 +33,53 @@
     font-size: 14px;
     line-height: 16px;
     color: #222222;
+}
+.residence_input_container{
+    margin-top: 24px;
+    display:flex;
+    padding: 0 16px;
+    width: calc(100% - 32px);
+}
+.residence_input_container > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+.residence_input_container > div > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #222222;
+}
+.residence_datepick_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.alert_container{
+    margin-top: 8px;
+    padding: 0 16px;
+    width: calc(100% - 32px);
+}
+.text_container{
+    margin-top: 24px;
+    display: flex;
+    width: 100%;
+    justify-content:center;
+}
+.text_container > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #7A7A7A;
+}
+.residence_view_btn_container{
+    margin-top: 12px;
+    margin-bottom: 109px;
+    display: flex;
+    padding: 0 16px;
+    width: calc(100% - 32px);
 }

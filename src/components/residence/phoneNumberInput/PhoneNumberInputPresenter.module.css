@@ -1,0 +1,27 @@
+.phone_number_input_root{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 46px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+}
+.phone_number_input_root > input{
+    padding: 0 12px;
+    outline: 0;
+    border: 0;
+    width: calc(100% - 24px);
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #222222;
+}
+
+.phone_number_input_root > input::placeholder{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    color: #B4B4B4;
+}

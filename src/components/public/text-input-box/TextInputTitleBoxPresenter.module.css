@@ -12,17 +12,23 @@
 .text_input_box_main.readonly{
     background-color: #F2F2F2;
 }
+.text_input_box_title{
+    margin-left: 10px;
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    color: #B4B4B4;
+}
 .text_input_container{
-    padding: 0 7px 0 12px;
+    margin-right: 8px;
     display: flex;
-    width: 100%;
-    justify-content: space-between;
     align-items: center;
 }
 .text_input_box_input{
     border: 0;
     outline: 0;
-    max-width: 100px;
+    max-width: 50px;
+    text-align: right;
     font-family: 'Apple SD Gothic Neo';
     font-weight: 500;
     font-size: 14px;
@@ -45,4 +51,7 @@
 }
 .text_input_box_subtitle.readonly{
     color: #B4B4B4;
+}
+.arrow_right{
+    margin-left: 4px;
 }

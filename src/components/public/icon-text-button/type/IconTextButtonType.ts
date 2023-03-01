@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {ReactEventHandler} from 'react';
 
 export type IconTextButtonContainerPropsType = {
-    icon?: React.FC<SVGElement>,
+    iconType: string,
     btnTitle: string,
+    onClickHandler?: ReactEventHandler,
 }
 export type IconTextButtonPresenterPropsType = {
-    icon?: React.FC<SVGElement>,
+    iconType: string,
     btnTitle: string,
+    onClickHandler?: ReactEventHandler,
 }

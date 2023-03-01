@@ -1,12 +1,11 @@
 import React from 'react';
-import {TextInputBoxPresenterPropsType} from './type/TextInputBoxType'
+import {TextInputPresenterPropsType} from './type/TextInputBoxType'
 import styles from './TextInputBoxPresenter.module.css';
 import {ReactComponent as ArrowRightIcon} from 'assets/images/public/arrow_right.svg'
 
-function TextInputBoxPresenter({componentRef, textBoxTitle, textBoxSubTitle, inputPlaceholder, inputOnChangeHandler, inputType, inputValue, isActiveBox, isArrowIcon}: TextInputBoxPresenterPropsType){
+function TextInputPresenter({componentRef, rootOnClickHandler, textBoxSubTitle, inputPlaceholder, inputOnChangeHandler, inputType, inputValue, isActiveBox, isArrowIcon, isReadOnly}: TextInputPresenterPropsType){
     return(
-        <div className={`${styles.text_input_box_main} ${isActiveBox ? styles.readonly : ''}`}>
-            <span className={styles.text_input_box_title}>{textBoxTitle}</span>
+        <div onClick={rootOnClickHandler} className={`${styles.text_input_box_main} ${isActiveBox ? styles.readonly : ''}`}>
             <div className={styles.text_input_container}>
                 <input
                     ref={componentRef}
@@ -16,15 +15,13 @@ function TextInputBoxPresenter({componentRef, textBoxTitle, textBoxSubTitle, inp
                     placeholder={inputPlaceholder}
                     value={isActiveBox ? '' : inputValue}
                     disabled={isActiveBox ? true : false}
-                    min={inputType === 'number' ? '1' : ''}
-                    max={inputType === 'number' ? '31' : ''}
-                    step={inputType === 'number' ? '1' : ''}
+                    readOnly={isReadOnly ? true : false}
                 />
                 <span className={`${styles.text_input_box_subtitle} ${isActiveBox ? styles.readonly : ''}`}>{textBoxSubTitle}</span>
-                {isArrowIcon ? <ArrowRightIcon className={styles.arrow_right}/> : null}
+                {isArrowIcon ? <ArrowRightIcon /> : null}
             </div>
         </div>
     )
 }
 
-export default TextInputBoxPresenter;
+export default TextInputPresenter;

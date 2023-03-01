@@ -2,9 +2,9 @@ import React from 'react';
 import IconTextButtonPresenter from './IconTextButtonPresenter';
 import {IconTextButtonContainerPropsType} from "./type/IconTextButtonType";
 
-function IconTextButtonContainer({icon, btnTitle}: IconTextButtonContainerPropsType){
+function IconTextButtonContainer({ btnTitle, onClickHandler, iconType}: IconTextButtonContainerPropsType){
     return(
-        <IconTextButtonPresenter icon={icon} btnTitle={btnTitle} />
+        <IconTextButtonPresenter iconType={iconType} btnTitle={btnTitle} onClickHandler={onClickHandler} />
     )
 }
 

@@ -107,6 +107,7 @@ function RefundView(){
                             <div>
                                 <TextInputBoxContainer
                                     componentRef={depositInputRef}
+                                    isTitleUse={true}
                                     textBoxTitle='보증금'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
@@ -114,6 +115,7 @@ function RefundView(){
                                 />
                                 <TextInputBoxContainer
                                     componentRef={monthlyCostInputRef}
+                                    isTitleUse={true}
                                     textBoxTitle='월 임대료'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
@@ -123,6 +125,7 @@ function RefundView(){
                             <div>
                                 <TextInputBoxContainer
                                     componentRef={depositInputRef}
+                                    isTitleUse={true}
                                     textBoxTitle='보증금'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
@@ -134,6 +137,7 @@ function RefundView(){
                             <TextInputBoxContainer
                                 isActiveBox={isCheck}
                                 componentRef={maintenanceCostInputRef}
+                                isTitleUse={true}
                                 textBoxTitle='월 관리비'
                                 textBoxSubTitle='만원'
                                 inputPlaceholder='0'
@@ -142,6 +146,7 @@ function RefundView(){
                             <TextInputBoxContainer
                                 componentRef={paymentDeadlineInputRef}
                                 inputType="number"
+                                isTitleUse={true}
                                 textBoxTitle='임대료 납부일'
                                 textBoxSubTitle='일'
                                 inputPlaceholder=''

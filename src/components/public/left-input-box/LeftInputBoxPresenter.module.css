@@ -1,0 +1,19 @@
+.left_input_box_root{
+    padding: 0 12px;
+    display: flex;
+    width: calc(100% - 24px);
+    justify-content:space-between;
+    align-items:center;
+    heigth: 46px;
+    border-radius: 4px;
+}
+.left_input_box_root > input {
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #222222;
+}
+.left_input_box_root > input::placeholder {
+    color: #B4B4B4;
+}
