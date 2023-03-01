@@ -1,46 +1,172 @@
-# Getting Started with Create React App
+# **📋 프로젝트 개요**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![read_me](read_me.gif)
 
-## Available Scripts
+해당 프로젝트는 콜버스랩 사전 과제를 위해 제작하였습니다.
 
-In the project directory, you can run:
+- 전반적으로 ****presentational and container 패턴으로 비즈니스 로직과 렌더링을 위한 View Component 를 분리하는 방식으로 구현하였습니다.****
 
-### `npm start`
+# 사용한 종속성 라이브러리
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- react-cookie - 쿠키를 통한 자료 저장을 위해 설치하였으나, 중간부터 react-router-dom의 location.state를 이용하는 방식으로 수정하였습니다.
+- react-datepicker - datepicker를 간편하게 사용할 수 있는 외부 라이브러리 입니다.
+- react-daum-postcode - 다음의 주소 찾기를 간편하게 사용할 수 있는 외부 라이브러리 입니다.
+- react-redux, redux - Client State를 관리하기 위해 사용한 라이브러리 입니다.
+- styled-components - 전반적으로 CSS module을 사용하였지만 datepicker의 디자인을 커스텀 할 때 사용하였습니다.
+- react-router-dom - 어플리케이션의 라우팅을 위해 사용하였습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Email : [seobisback@gmail.com](mailto:seobisback@gmail.com)
+- Notion Portpolio : [Developer Seobwoo Kim Portpolio](https://www.notion.so/Developer-Seobwoo-Kim-Portpolio-a2d2e2fb6c6e4a4b9de09c47e99f3010)
+- Github Link : [sdf5771 - Overview](https://github.com/sdf5771)
+- Github Tech Blog : [Seobisback Github Blog](https://sdf5771.github.io/)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 1. 설치 및 실행방법
 
-### `npm run build`
+- Node Package Manager를 통한 종속성 라이브러리 설치
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```python
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React Script 실행
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```python
+npm start
+```
 
-### `npm run eject`
+- 서버 API Git Repo
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+https://github.com/sdf5771/zaritalk-clone-fe.git
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# 2. 프로젝트 Directory 구조
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Path : src/
 
-## Learn More
+```html
+.
+├── App.tsx
+├──📁 assets
+│   └──📁 images
+│       ├──📁 complete-refund
+│       │   └── house_icon.svg
+│       ├──📁 public
+│       │   ├── arrow_right.svg
+│       │   ├── arrow_right_gray.svg
+│       │   ├── call_icon.svg
+│       │   └── mail_icon.svg
+│       ├──📁 refund
+│       │   ├── alert_logo.svg
+│       │   ├── check_box_active.svg
+│       │   └── check_box_default.svg
+│       └──📁 residence
+│           └── reading_glasses_icon.svg
+├──📁 components
+│   ├──📁 complete-refund
+│   │   ├──📁 refund-result
+│   │   │   ├── RefundResultContainer.tsx
+│   │   │   ├── RefundResultPresenter.module.css
+│   │   │   ├── RefundResultPresenter.tsx
+│   │   │   └── type
+│   │   │       └── RefundResultType.ts
+│   │   └──📁 title-decription
+│   │       ├── TitleDescriptionContainer.tsx
+│   │       ├── TitleDescriptionPresenter.module.css
+│   │       ├── TitleDescriptionPresenter.tsx
+│   │       └── type
+│   │           └── TitleDescriptionType.ts
+│   ├──📁 public
+│   │   ├──📁 alert_description
+│   │   │   ├── AlertDescriptionContainer.tsx
+│   │   │   ├── AlertDescriptionPresenter.module.css
+│   │   │   ├── AlertDescriptionPresenter.tsx
+│   │   │   └── type
+│   │   │       └── AlertDescriptionType.ts
+│   │   ├──📁 blue-type-btn
+│   │   │   ├── BlueTypeBtn.module.css
+│   │   │   └── BlueTypeBtn.tsx
+│   │   ├──📁 icon-text-button
+│   │   │   ├── IconTextButtonContainer.tsx
+│   │   │   ├── IconTextButtonPresenter.module.css
+│   │   │   ├── IconTextButtonPresenter.tsx
+│   │   │   └── type
+│   │   │       └── IconTextButtonType.ts
+│   │   ├──📁 left-input-box
+│   │   │   ├── LeftInputBoxContainer.tsx
+│   │   │   ├── LeftInputBoxPresenter.module.css
+│   │   │   ├── LeftInputBoxPresenter.tsx
+│   │   │   └── type
+│   │   │       └── LeftInputBoxType.ts
+│   │   ├──📁 public-toast-message
+│   │   │   ├── PublicToastMessageContainer.tsx
+│   │   │   ├── PublicToastMessagePresenter.module.css
+│   │   │   └── PublicToastMessagePresenter.tsx
+│   │   └──📁 text-input-box
+│   │       ├── TextInputBoxContainer.tsx
+│   │       ├── TextInputBoxPresenter.module.css
+│   │       ├── TextInputBoxPresenter.tsx
+│   │       ├── TextInputTitleBoxPresenter.module.css
+│   │       ├── TextInputTitleBoxPresenter.tsx
+│   │       └── type
+│   │           └── TextInputBoxType.ts
+│   ├──📁 refund
+│   │   └── toggle-btn
+│   │       ├── ToggleBtnContainer.tsx
+│   │       ├── ToggleBtnPresenter.module.css
+│   │       └── ToggleBtnPresenter.tsx
+│   └──📁 residence
+│       ├──📁  addressInput
+│       │   ├── AddressInputContainer.tsx
+│       │   ├── AddressInputPresenter.module.css
+│       │   ├── AddressInputPresenter.tsx
+│       │   └── type
+│       │       └── AddressInputType.ts
+│       ├──📁 phoneNumberInput
+│       │   ├── PhoneNumberInputContainer.tsx
+│       │   ├── PhoneNumberInputPresenter.module.css
+│       │   ├── PhoneNumberInputPresenter.tsx
+│       │   └── type
+│       │       └── PhoneNumberInputType.ts
+│       └──📁 refund-esmimation-display
+│           ├── RefundEstimationDisplayContainer.tsx
+│           ├── RefundEstimationDisplayPresenter.module.css
+│           ├── RefundEstimationDisplayPresenter.tsx
+│           └── type
+│               └── RefundEstimationDisplayType.ts
+├── index.tsx
+├──📁 modules
+│   ├── calculateRentRefund.ts
+│   └── refValueReturn.ts
+├──📁 reducers
+│   ├── reducers.ts
+│   └──📁 routes
+│       ├──📁 refund
+│       │   ├── locationRentTypeReducer.ts
+│       │   └── rentalTypeToggleClickReducer.ts
+│       └──📁 residence
+│           └── addressValueReducer.ts
+├──📁 routes
+│   ├──📁 complete-refund
+│   │   ├── CompleteRefundView.module.css
+│   │   └── CompleteRefundView.tsx
+│   ├──📁 refund
+│   │   ├── RefundView.module.css
+│   │   └── RefundView.tsx
+│   └──📁 residence
+│       ├── ResidenceView.module.css
+│       └── ResidenceView.tsx
+└──📁 store
+    └── store.ts
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- components : 공용으로 사용하는 component는 ‘public’ 폴더에 두고, 그 밖의 Components는 각자 성격에 맞는 폴더에 저장
+- images : 이미지 리소스를 담은 폴더
+- modules : 환급금을 계산하는 함수와 입력 값을 검사하는 함수를 담은 폴더
+- reducers : 리듀서를 모아둔 폴더
+- route : 라우팅된 path 별로 정리해둔 폴더
+- store : store를 담은 폴더
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
