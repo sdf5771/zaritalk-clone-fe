@@ -24,7 +24,9 @@
     font-weight: 700;
     font-size: 14px;
     color: #222222;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .refund_result_body{
     display: flex;

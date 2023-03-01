@@ -4,16 +4,16 @@ import ToggleBtnPresenter from './ToggleBtnPresenter';
 import {useCookies} from "react-cookie";
 
 function ToggleBtnContainer(){
-    const [cookies, setCookie, removeCookie] = useCookies(['rentType']);
+    // const [cookies, setCookie, removeCookie] = useCookies(['rentType']);
     const [activeToggle, setActiveToggle] = useState('');
     const rentalTypeToggleClickDispatch = useDispatch();
 
-    useEffect(() => {
-        if(cookies.rentType){
-            setActiveToggle(cookies.rentType)
-            rentalTypeToggleClickDispatch({type: 'rentalTypeToggleClick', menuName: cookies.rentType})
-        }
-    },[])
+    // useEffect(() => {
+    //     if(cookies.rentType){
+    //         setActiveToggle(cookies.rentType)
+    //         rentalTypeToggleClickDispatch({type: 'rentalTypeToggleClick', menuName: cookies.rentType})
+    //     }
+    // },[])
 
     const toggleBtnOnClickHandler = (event: React.MouseEvent) => {
         const activeTargetId = event.currentTarget.id;
