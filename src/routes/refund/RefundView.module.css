@@ -63,19 +63,6 @@
     flex-direction: column;
     gap: 7px;
 }
-.refund_view_description_container > div > div{
-    display: flex;
-    gap: 5px;
-}
-.refund_view_description_container > div > div > span{
-    margin-top: 2px;
-    font-family: 'Apple SD Gothic Neo';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color: #7A7A7A;
-}
 .refund_view_input_container{
     margin-top: 12px;
     display: flex;

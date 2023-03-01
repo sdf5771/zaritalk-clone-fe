@@ -1,0 +1,15 @@
+.alert_description{
+    display: flex;
+    gap: 5px;
+}
+.alert_logo{
+    min-width:14px;
+    min-height:14px;
+}
+.alert_description > span{
+    font-family: 'Apple SD Gothic Neo';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #7A7A7A;
+}
