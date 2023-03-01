@@ -7,7 +7,7 @@ import TextInputBoxContainer from "components/public/text-input-box/TextInputBox
 import {ReactComponent as CheckBoxDefault} from 'assets/images/refund/check_box_default.svg'
 import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_active.svg'
 import {RootState} from "reducers/reducers";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate, useLocation } from "react-router-dom";
 import PublicToastMessageContainer from "../../components/public/public-toast-message/PublicToastMessageContainer";
 import AlertDescriptionContainer from "components/public/alert_description/AlertDescriptionContainer";
@@ -21,12 +21,14 @@ function RefundView(){
     const paymentDeadlineInputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
+    const locationRentTypeDispatch = useDispatch();
     const [activeMenu, setActiveMenu] = useState(null);
     const [isCheck, setIsCheck] = useState(false);
     useEffect(() => {
         if(location.state && location.state['rentType']){
             setActiveMenu(location.state['rentType']);
             setIsCheck(location.state['usingMaintenanceValue'])
+            locationRentTypeDispatch({type: 'location rentType', rentType: location.state['rentType']})
         }
     },[])
 
@@ -40,11 +42,11 @@ function RefundView(){
         setIsCheck(!isCheck);
     }
 
-    const checkInputValues = (depositInputRefValue: string, maintenanceCostInputRefValue: string, monthlyCostInputRefValue: string, paymentDeadlineInputRefValue: string, usingMaintenanceValue:boolean) => {
+    const checkInputValues = (activeMenu: string, depositInputRefValue: string, maintenanceCostInputRefValue: string, monthlyCostInputRefValue: string, paymentDeadlineInputRefValue: string, usingMaintenanceValue:boolean) => {
         const checkObj = {
             maintenanceCost: usingMaintenanceValue ? maintenanceCostInputRefValue.length === 0 : maintenanceCostInputRefValue.length !== 0,
             deposit: depositInputRefValue.length !== 0,
-            monthlyCost: monthlyCostInputRefValue.length !== 0,
+            monthlyCost: activeMenu === 'monthlyRent' ? monthlyCostInputRefValue.length !== 0 : true,
             paymentDeadline: paymentDeadlineInputRefValue.length !== 0,
         };
 
@@ -66,7 +68,7 @@ function RefundView(){
         const paymentDeadlineInputRefValue = refValueReturn(paymentDeadlineInputRef);
         const usingMaintenanceValue = isCheck;
 
-        let checkAllValueResult = checkInputValues(depositInputRefValue,maintenanceCostInputRefValue,monthlyCostInputRefValue,paymentDeadlineInputRefValue,usingMaintenanceValue)
+        let checkAllValueResult = checkInputValues(rentalTypeToggleClickSelector['activeMenu'], depositInputRefValue,maintenanceCostInputRefValue,monthlyCostInputRefValue,paymentDeadlineInputRefValue,usingMaintenanceValue)
 
         if(!checkAllValueResult){
             setVisibleToastMsg(true);

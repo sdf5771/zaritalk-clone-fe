@@ -1,19 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ToggleBtnPresenter from './ToggleBtnPresenter';
-import {useCookies} from "react-cookie";
+import {RootState} from "reducers/reducers";
 
 function ToggleBtnContainer(){
-    // const [cookies, setCookie, removeCookie] = useCookies(['rentType']);
     const [activeToggle, setActiveToggle] = useState('');
     const rentalTypeToggleClickDispatch = useDispatch();
+    const locationRentTypeSelector = useSelector((state: RootState) => state.locationRentTypeReducer)
 
-    // useEffect(() => {
-    //     if(cookies.rentType){
-    //         setActiveToggle(cookies.rentType)
-    //         rentalTypeToggleClickDispatch({type: 'rentalTypeToggleClick', menuName: cookies.rentType})
-    //     }
-    // },[])
+    useEffect(() => {
+        if(locationRentTypeSelector && locationRentTypeSelector['rentType']){
+            setActiveToggle(locationRentTypeSelector && locationRentTypeSelector['rentType'])
+        }
+    },[locationRentTypeSelector['rentType']])
 
     const toggleBtnOnClickHandler = (event: React.MouseEvent) => {
         const activeTargetId = event.currentTarget.id;

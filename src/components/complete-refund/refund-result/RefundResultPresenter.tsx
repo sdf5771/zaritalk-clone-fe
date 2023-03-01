@@ -16,7 +16,7 @@ function RefundResultPresenter({state, rentType, startDate, endDate, totalAmount
             <div className={styles.refund_result_body}>
                 <div className={styles.refund_content_container}>
                     <TitleDescriptionContainer title="임대유형" description={rentType}/>
-                    <TitleDescriptionContainer title="월임대료" description={state.monthlyCost + "만원"}/>
+                    <TitleDescriptionContainer title="월임대료" description={rentType === '월세' ? state.monthlyCost + "만원" : '없음'}/>
                 </div>
                 <div className={styles.refund_content_container}>
                     <TitleDescriptionContainer title="보증금" description={state.deposit + '만원'}/>
