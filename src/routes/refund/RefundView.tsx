@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styles from 'routes/refund/RefundView.module.css'
 import ToggleBtnContainer from "components/refund/toggle-btn/ToggleBtnContainer";
 import {ReactComponent as AlertLogo} from 'assets/images/refund/alert_logo.svg';
@@ -9,22 +9,65 @@ import {ReactComponent as CheckBoxActive} from 'assets/images/refund/check_box_a
 import {RootState} from "reducers/reducers";
 import {useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+import PublicToastMessageContainer from "../../components/public/public-toast-message/PublicToastMessageContainer";
 
 function RefundView(){
-    const [cookies, setCookie, removeCookie] = useCookies(['rentType']);
+    const [visibleToastMsg, setVisibleToastMsg] = useState(false);
+    const depositInputRef = useRef<HTMLInputElement>(null);
+    const maintenanceCostInputRef = useRef<HTMLInputElement>(null);
+    const monthlyCostInputRef = useRef<HTMLInputElement>(null);
+    const paymentDeadlineInputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const rentalTypeToggleClickSelector = useSelector((state: RootState) => state.rentalTypeToggleClickReducer)
-    console.log('cookies ', cookies.rentType);
+
     const [isCheck, setIsCheck] = useState(false);
 
     const checkBoxOnClickHandler = (event: React.MouseEvent) => {
         setIsCheck(!isCheck);
     }
 
+    const checkInputValues = (depositInputRefValue: string, maintenanceCostInputRefValue: string, monthlyCostInputRefValue: string, paymentDeadlineInputRefValue: string, usingMaintenanceValue:boolean) => {
+        const checkObj = {
+            maintenanceCost: !usingMaintenanceValue,
+            deposit: depositInputRefValue.length !== 0,
+            monthlyCost: monthlyCostInputRefValue.length !== 0,
+            paymentDeadline: paymentDeadlineInputRefValue.length !== 0,
+        };
+
+        return Object.values(checkObj).every((value) => value);
+    }
+
+    const refValueReturn = (refData: React.RefObject<HTMLInputElement>) => {
+        if(refData && refData.current) {
+            return refData.current.value
+        } else {
+            return ''
+        }
+    }
+
     const completeBtnOnClickHandler = (event: React.MouseEvent) => {
-        setCookie('rentType', rentalTypeToggleClickSelector['activeMenu'])
-        navigate('/residence');
+        const depositInputRefValue = refValueReturn(depositInputRef);
+        const maintenanceCostInputRefValue = refValueReturn(maintenanceCostInputRef);
+        const monthlyCostInputRefValue = refValueReturn(monthlyCostInputRef);
+        const paymentDeadlineInputRefValue = refValueReturn(paymentDeadlineInputRef);
+        const usingMaintenanceValue = isCheck;
+
+        let checkAllValueResult = checkInputValues(depositInputRefValue,maintenanceCostInputRefValue,monthlyCostInputRefValue,paymentDeadlineInputRefValue,usingMaintenanceValue)
+
+        if(!checkAllValueResult){
+            setVisibleToastMsg(true);
+        } else {
+            navigate('/residence',
+                { state: {
+                        deposit: depositInputRefValue,
+                        monthlyCost: monthlyCostInputRefValue,
+                        rentType: rentalTypeToggleClickSelector['activeMenu'],
+                        paymentDeadline: paymentDeadlineInputRefValue,
+                        maintenanceCost: maintenanceCostInputRefValue,
+                        usingMaintenanceValue: usingMaintenanceValue,
+                    } }
+            );
+        }
     }
     return(
         <div className={styles.refund_view_main}>
@@ -36,7 +79,7 @@ function RefundView(){
                     <span>임대 유형</span>
                     <ToggleBtnContainer />
                 </div>
-                {rentalTypeToggleClickSelector['activeMenu'] !== '' || cookies.rentType ?
+                {rentalTypeToggleClickSelector['activeMenu'] !== '' ?
                     <div className={styles.refund_view_body}>
                     <div className={styles.refund_view_description_container}>
                         <span className={styles.description_title}>임대비용</span>
@@ -46,16 +89,16 @@ function RefundView(){
                         </div>
                     </div>
                     <div className={styles.refund_view_input_container}>
-                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" || cookies.rentType === "monthlyRent" ?
+                        {rentalTypeToggleClickSelector['activeMenu'] === "monthlyRent" ?
                             <div>
                                 <TextInputBoxContainer
-                                    componentRef={null}
+                                    componentRef={depositInputRef}
                                     textBoxTitle='보증금'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
                                 />
                                 <TextInputBoxContainer
-                                    componentRef={null}
+                                    componentRef={monthlyCostInputRef}
                                     textBoxTitle='월 임대료'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
@@ -63,7 +106,7 @@ function RefundView(){
                             </div> :
                             <div>
                                 <TextInputBoxContainer
-                                    componentRef={null}
+                                    componentRef={depositInputRef}
                                     textBoxTitle='보증금'
                                     textBoxSubTitle='만원'
                                     inputPlaceholder='0'
@@ -73,13 +116,13 @@ function RefundView(){
                         <div>
                             <TextInputBoxContainer
                                 isActiveBox={isCheck}
-                                componentRef={null}
+                                componentRef={maintenanceCostInputRef}
                                 textBoxTitle='월 관리비'
                                 textBoxSubTitle='만원'
                                 inputPlaceholder='0'
                             />
                             <TextInputBoxContainer
-                                componentRef={null}
+                                componentRef={paymentDeadlineInputRef}
                                 inputType="number"
                                 textBoxTitle='임대료 납부일'
                                 textBoxSubTitle='일'
@@ -100,6 +143,13 @@ function RefundView(){
                     </div>
                 </div> : null}
             </div>
+            {visibleToastMsg &&
+                <PublicToastMessageContainer
+                    message='모든 정보를 입력해주세요.'
+                    removeTimeout={1500}
+                    visible={visibleToastMsg}
+                    setVisible={setVisibleToastMsg}
+                />}
         </div>
     );
 }

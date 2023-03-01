@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import TextInputBoxPresenter from "./TextInputBoxPresenter";
 import {TextInputBoxContainerPropsType} from './type/TextInputBoxType'
 
-function TextInputBoxContainer({componentRef, textBoxTitle, textBoxSubTitle, inputPlaceholder, inputType, isActiveBox, isArrowIcon}: TextInputBoxContainerPropsType){
-    const [inputValue, setInputValue] = useState('');
+function TextInputBoxContainer({componentRef, textBoxTitle, textBoxSubTitle, inputPlaceholder, initialValue, inputType, isActiveBox, isArrowIcon}: TextInputBoxContainerPropsType){
+    const [inputValue, setInputValue] = useState(initialValue ? initialValue :'');
+
 
     const inputOnChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
